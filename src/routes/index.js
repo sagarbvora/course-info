@@ -1,16 +1,16 @@
-import { lazy } from 'react';
-const CourseList = lazy(() => import("../component/course/CourseList"));
-const CourseDetails = lazy(() => import("../component/course/CourseDetails"));
+import { lazy } from "react";
+const CourseLists = lazy(() => import("../component/course/CourseLists"));
+const CourseDetail = lazy(() => import("../component/course/CourseDetail"));
 
 export const routes = [
   {
     path: "/",
-    element: CourseList,
+    element: CourseLists,
     exact: true,
   },
   {
     path: "/course-details/:id",
-    element: CourseDetails,
+    element: CourseDetail,
     exact: true,
   },
 ];

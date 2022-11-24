@@ -1,33 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { getAllCourses } from "../../redux/action/course";
 import Cards from "../common/card";
+import { ReactComponent as Banner } from "../../asserts/images/online-learning-concept.svg";
 import "../../asserts/css/course_list.css";
 
-const CourseList = () => {
+const CourseLists = () => {
   const courses = useSelector((state) => state.courses);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     getAllCourseList();
   }, []);
-  console.log("courses", courses);
+
   const getAllCourseList = () => {
     dispatch(getAllCourses());
   };
   return (
-    <div className="course-list">
-      <div className="row">
+    <div className="course-list-layout">
+      <div className="banner-container">
+          <Banner />
+      </div>
+      <div className="course-list-title">Course Lists</div>
+      <div className="course-list-container">
         {courses && courses.list && courses.list.length ? (
           courses.list.map((course, index) => (
-            <div
-              key={index}
-              className="col-sm-12 col-md-3 col-lg-4 col-xl-4"
-              onClick={() => navigate(`/course-details/${course.idCourse}`)}
-            >
+            <React.Fragment key={index}>
               <Cards details={course} />
-            </div>
+            </React.Fragment>
           ))
         ) : (
           <div>Not Found</div>
@@ -37,4 +36,4 @@ const CourseList = () => {
   );
 };
 
-export default CourseList;
+export default CourseLists;

@@ -8,8 +8,9 @@ function App() {
   const { loader } = useSelector((state) => state);
   return (
     <div className="App">
+      {loader && <Loader />}
       <BrowserRouter>
-        <Suspense fallback={loader && <Loader />}>
+        <Suspense fallback={null}>
           <Routes>
             {routes &&
               routes.map((route, index) => (
